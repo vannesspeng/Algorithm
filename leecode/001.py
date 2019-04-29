@@ -32,10 +32,9 @@ def twoNum(lis, target):
     for i in range(len(lis)):
         if nums[i] in dic:
             return [dic[nums[i]], i]
-        else:
-            dic[target - nums[i]] = i
+        dic[target - nums[i]] = i
 
 nums = [2, 7, 11, 15, 98, 88, 900, 9, 45]
 target = 9
 # print(getNumIndex(nums, target=998))
-print(twoNum(nums, target=998))
+print(twoNum(nums, target=107))

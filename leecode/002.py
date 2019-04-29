@@ -22,7 +22,7 @@
 # 请注意你的答案必须为子串长度，"pwke"是一个序列，而不是一个子串。
 #
 
-s = "pwwgkewwwjsdfiosoidfjpeow"
+s = "pdfgwwfkew"
 
 # hashmap + 滑动窗口
 # 时间复杂度:O(n)
@@ -33,8 +33,12 @@ class Solution:
 
         for i in range(len(s)):
             if s[i] in dic:
+                # start作为滑动窗口的起始位置，是不可以往回走的，当第一次碰碰到w重复时start等于dic['w']+1=5，
+                # 滑动窗口继续滑动，喷到f重复了，此时还是同样的计算，start等于等于dic['f']+1=3，明显是不对的，所以这个时候
+                # start还是应该取start的初始值
                 start = max(start, dic[s[i]] + 1)
             dic[s[i]] = i
+            # 元素没有重复的情况answer是取值i-start+1， 当元素重复时，answer取原始值不变
             answer = max(answer, i-start+1)
         return answer
 solution = Solution()
